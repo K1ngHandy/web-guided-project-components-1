@@ -1,5 +1,6 @@
 import panelData from './data/panelData'
 import constants from './data/constants'
+import linkData from './data/linkData'
 
 // TASK 0- Motivate demoing a small makeImage component
 //  that takes an { imgURL } and returns an img element.
@@ -88,7 +89,7 @@ function makePanel({title, content}) {
   panelButtons.classList.add('panel-buttons')
   openButton.classList.add('panel-btn-open')
   closeButton.classList.add('panel-btn-close', 'hide-btn')
-  panelContent.classList.add('panel-content', 'toggle-on')
+  panelContent.classList.add('panel-content')
 
 
   // TASK 8- Set text content using arguments as raw material
@@ -118,6 +119,10 @@ function makePanel({title, content}) {
 // TASK 10- Loop through the panelData we imported from the data folder
 //  creating panels for each content and title and append them to the DOM.
 //  We can do this with a single forEach, or with a map and a forEach.
+panelData.forEach(panelObj => {
+  const newPanel = makePanel(panelObj)
+  accordion.appendChild(newPanel)
+})
 
 
 // [STRETCH] Comment out the links inside the nav and
@@ -125,3 +130,25 @@ function makePanel({title, content}) {
 // and returns an anchor tag with the right href, class and textContent.
 // Loop over the 'linkData' in the data folder, generate anchor tags
 // and append them to the nav.
+function linkMaker({ href, className, text}) {
+  // create anchor
+  const anchor = document.createElement('a')
+  // set attributes of anchor tag
+  anchor.setAttribute('href', href)
+  anchor.classList.add(className)
+  // add text content
+  anchor.textContent = text
+  // return anchor
+  return anchor
+}
+
+// grab the parent node which is nav element
+const nav = document.querySelector('.main-nav')
+
+// loop data
+linkData.forEach(linkObj => {
+// call linkMaker
+const newLink = linkMaker(linkObj)
+// append to nav
+nav.appendChild(newLink)
+})
