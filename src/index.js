@@ -67,10 +67,10 @@ function makePanel(/* what data does the panel need? */) {
   // paying attention to the elements that need to start out hidden
   panel.classList.add('panel');
   panelBar.classList.add('panel-bar');
-  panelContent.classList.add('panel-content', 'toggle-on');
+  panelContent.classList.add('panel-content');
   panelButtons.classList.add('panel-buttons');
   openButton.classList.add('panel-btn-open');
-  closeButton.classList.add('panel-btn-open', 'hide-btn');
+  closeButton.classList.add('panel-btn-open hide-btn');
 
   // TASK 8- Set text content using arguments as raw material
   //  and also using the open and close arrows imported at the top of the file
@@ -82,18 +82,31 @@ function makePanel(/* what data does the panel need? */) {
   //  - the open button needs to go away (the 'hide-btn' class name controls this)
   //  - the close button needs to show (the 'hide-btn' class name controls this)
   //  - the contents need to show (the 'toggle-on' class name controls this)
-
+  openButton.addEventListener('click', () => {
+    openButton.classList.add('hide-btn');
+    closeButton.classList.remove('hide-btn');
+    panelContent.classList.add('toggle-on');
+  });
+  closeButton.addEventListener('click', () => {
+    openButton.classList.remove('hide-btn');
+    closeButton.classList.add('hide-btn');
+    panelContent.classList.remove('toggle-on');
+  })
 
   // don't forget to return the panel!
   return panel;
 }
+makePanel();
 console.log(panel);
 
 
 // TASK 10- Loop through the panelData we imported from the data folder
 //  creating panels for each content and title and append them to the DOM.
 //  We can do this with a single forEach, or with a map and a forEach.
-
+panelData.forEach(panel => {
+  panelTitle.innerText = panel.title;
+  panelContent.innerText = panel.content;
+})
 
 // [STRETCH] Comment out the links inside the nav and
 // write a linkMaker that takes { href, className, text }
