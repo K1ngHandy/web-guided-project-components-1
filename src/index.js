@@ -6,7 +6,7 @@ const imageData = [
   { imageURL: 'https://images.dog.ceo/breeds/mastiff-bull/n02108422_3398.jpg' },
   { imageURL: 'https://images.dog.ceo/breeds/mastiff-bull/n02108422_2947.jpg' },
 ]
-
+console.log(imageData);
 
 // TASK 1- Import the data we need to "hydrate" our component.
 //  On the one hand, the default export from data/panelData.js
@@ -34,22 +34,12 @@ function makePanel(/* what data does the panel need? */) {
 
   // TASK 5- Instantiate all the elements needed for a panel
   const panel = document.createElement('div');
-  panel.classList.add('panel');
   const panelBar = document.createElement('div');
-  panelBar.classList.add('panel-bar');
   const panelContent = document.createElement('div');
-  panelContent.classList.add('panel-content', 'toggle-on');
   const panelTitle = document.createElement('h3');
-  panelTitle.innerText = 'Title of Panel';
   const panelButtons = document.createElement('div');
-  panelButtons.classList.add('panel-buttons');
   const openButton = document.createElement('button');
-  openButton.classList.add('panel-btn-open');
-  openButton.innerHTML = '&#9660';
   const closeButton = document.createElement('button');
-  closeButton.classList.add('panel-btn-open', 'hide-btn');
-  closeButton.innerText = 'Close';
-
 
   // TASK 6- Setup the structure of our elements
   /*
@@ -64,15 +54,29 @@ function makePanel(/* what data does the panel need? */) {
       <div></div>           // panelContent
     </div>
   */
+  // accordion.appendChild(panel);
+  panel.appendChild(panelBar);
+  panel.appendChild(panelContent);
+  panelBar.appendChild(panelTitle);
+  panelBar.appendChild(panelButtons);
+  panelButtons.appendChild(openButton);
+  panelButtons.appendChild(closeButton);
 
 
   // TASK 7- Add proper class names to our elements (See index.html for reference)
   // paying attention to the elements that need to start out hidden
-
+  panel.classList.add('panel');
+  panelBar.classList.add('panel-bar');
+  panelContent.classList.add('panel-content', 'toggle-on');
+  panelButtons.classList.add('panel-buttons');
+  openButton.classList.add('panel-btn-open');
+  closeButton.classList.add('panel-btn-open', 'hide-btn');
 
   // TASK 8- Set text content using arguments as raw material
   //  and also using the open and close arrows imported at the top of the file
-
+  panelTitle.innerText = 'Title of Panel';
+  openButton.innerText = '&#9660';
+  closeButton.innerText = 'Close';
 
   // TASK 9- When the 'open' or 'close' buttons are clicked, the content is toggled on/off:
   //  - the open button needs to go away (the 'hide-btn' class name controls this)
@@ -81,8 +85,9 @@ function makePanel(/* what data does the panel need? */) {
 
 
   // don't forget to return the panel!
-  return null
+  return panel;
 }
+console.log(panel);
 
 
 // TASK 10- Loop through the panelData we imported from the data folder
