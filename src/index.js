@@ -12,18 +12,20 @@ const imageData = [
 //  On the one hand, the default export from data/panelData.js
 //  On the other hand, the default export from data/constants.js
 //  Destructure `open` and `close` from the constants
-
+import { panelData } from './data/panelData';
+import { open, close } from './data/constants';
 
 // TASK 2- Verify our imports using log statements
-console.log() // log the panelData
-console.log() // log the open arrow
-console.log() // log the close arrow
+console.log(panelData) // log the panelData
+console.log(open) // log the open arrow
+console.log(close) // log the close arrow
 
 
 // TASK 3- Comment out the div.panel from index.html and grab its parent element.
 //  We will generate the panel with code, and we'll need the parent
 //  so we can append the code-generated panel to the DOM.
-const accordion = null
+const accordion = document.querySelector('.accordion');
+console.log(accordion);
 
 
 // TASK 4- Create a function 'makePanel' that creates a panel exactly as you see it in the HTML.
@@ -31,13 +33,22 @@ function makePanel(/* what data does the panel need? */) {
 
 
   // TASK 5- Instantiate all the elements needed for a panel
-  const panel = null
-  const panelBar = null
-  const panelContent = null
-  const panelTitle = null
-  const panelButtons = null
-  const openButton = null
-  const closeButton = null
+  const panel = document.createElement('div');
+  panel.classList.add('panel');
+  const panelBar = document.createElement('div');
+  panelBar.classList.add('panel-bar');
+  const panelContent = document.createElement('div');
+  panelContent.classList.add('panel-content', 'toggle-on');
+  const panelTitle = document.createElement('h3');
+  panelTitle.innerText = 'Title of Panel';
+  const panelButtons = document.createElement('div');
+  panelButtons.classList.add('panel-buttons');
+  const openButton = document.createElement('button');
+  openButton.classList.add('panel-btn-open');
+  openButton.innerHTML = '&#9660';
+  const closeButton = document.createElement('button');
+  closeButton.classList.add('panel-btn-open', 'hide-btn');
+  closeButton.innerText = 'Close';
 
 
   // TASK 6- Setup the structure of our elements
