@@ -1,3 +1,6 @@
+import { panelData } from './data/panelData';
+import { constants } from './data/constants';
+
 // TASK 0- Motivate demoing a small makeImage component
 //  that takes an { imgURL } and returns an img element.
 //  Then loop over these URLs making images as you go:
@@ -6,14 +9,12 @@ const imageData = [
   { imageURL: 'https://images.dog.ceo/breeds/mastiff-bull/n02108422_3398.jpg' },
   { imageURL: 'https://images.dog.ceo/breeds/mastiff-bull/n02108422_2947.jpg' },
 ]
-console.log(imageData);
 
 // TASK 1- Import the data we need to "hydrate" our component.
 //  On the one hand, the default export from data/panelData.js
 //  On the other hand, the default export from data/constants.js
 //  Destructure `open` and `close` from the constants
-import { panelData } from './data/panelData';
-import { open, close } from './data/constants';
+const { open, close } = constants;
 
 // TASK 2- Verify our imports using log statements
 console.log(panelData) // log the panelData
@@ -26,7 +27,6 @@ console.log(close) // log the close arrow
 //  so we can append the code-generated panel to the DOM.
 const accordion = document.querySelector('.accordion');
 console.log(accordion);
-
 
 // TASK 4- Create a function 'makePanel' that creates a panel exactly as you see it in the HTML.
 function makePanel(/* what data does the panel need? */) {
@@ -70,7 +70,8 @@ function makePanel(/* what data does the panel need? */) {
   panelContent.classList.add('panel-content');
   panelButtons.classList.add('panel-buttons');
   openButton.classList.add('panel-btn-open');
-  closeButton.classList.add('panel-btn-open hide-btn');
+  closeButton.classList.add('panel-btn-open');
+  closeButton.classList.add('hide-btn');
 
   // TASK 8- Set text content using arguments as raw material
   //  and also using the open and close arrows imported at the top of the file
@@ -94,19 +95,19 @@ function makePanel(/* what data does the panel need? */) {
   })
 
   // don't forget to return the panel!
+  console.log(panel);
   return panel;
 }
-makePanel();
-console.log(panel);
+makePanel(panelData);
 
 
 // TASK 10- Loop through the panelData we imported from the data folder
 //  creating panels for each content and title and append them to the DOM.
 //  We can do this with a single forEach, or with a map and a forEach.
-panelData.forEach(panel => {
-  panelTitle.innerText = panel.title;
-  panelContent.innerText = panel.content;
-})
+// panelData.forEach(panel => {
+//   panelTitle.innerText = panel.title;
+//   panelContent.innerText = panel.content;
+// })
 
 // [STRETCH] Comment out the links inside the nav and
 // write a linkMaker that takes { href, className, text }
