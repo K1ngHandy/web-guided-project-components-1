@@ -102,8 +102,6 @@ function makePanel(title, content) {
 //  creating panels for each content and title and append them to the DOM.
 //  We can do this with a single forEach, or with a map and a forEach.
 panelData.forEach((panel) => {
-  console.log(panel.title);
-  console.log(panel.content);
   makePanel(panel.title, panel.content);
 })
 
