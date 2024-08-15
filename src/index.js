@@ -28,8 +28,7 @@ console.log('Close', close) // log the close arrow
 const accordion = document.querySelector('.accordion');
 
 // TASK 4- Create a function 'makePanel' that creates a panel exactly as you see it in the HTML.
-function makePanel(/* what data does the panel need? */) {
-
+function makePanel(title, content) {
 
   // TASK 5- Instantiate all the elements needed for a panel
   const panel = document.createElement('div');
@@ -75,7 +74,8 @@ function makePanel(/* what data does the panel need? */) {
 
   // TASK 8- Set text content using arguments as raw material
   //  and also using the open and close arrows imported at the top of the file
-  panelTitle.innerText = 'Title of Panel';
+  panelTitle.innerText = `${title}`;
+  panelContent.innerText = `${content}`;
   openButton.innerText = '▼';
   closeButton.innerText = '▲';
 
@@ -95,19 +95,17 @@ function makePanel(/* what data does the panel need? */) {
   })
 
   // don't forget to return the panel!
-  console.log('Panel', panel);
   return panel;
 }
-makePanel(panelData);
-
 
 // TASK 10- Loop through the panelData we imported from the data folder
 //  creating panels for each content and title and append them to the DOM.
 //  We can do this with a single forEach, or with a map and a forEach.
-// panelData.forEach(panel => {
-//   panelTitle.innerText = panel.title;
-//   panelContent.innerText = panel.content;
-// })
+panelData.forEach((panel) => {
+  console.log(panel.title);
+  console.log(panel.content);
+  makePanel(panel.title, panel.content);
+})
 
 // [STRETCH] Comment out the links inside the nav and
 // write a linkMaker that takes { href, className, text }
