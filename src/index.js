@@ -1,5 +1,5 @@
-import { panelData } from './data/panelData';
-import { constants } from './data/constants';
+import panelData from './data/panelData';
+import constants from './data/constants';
 
 // TASK 0- Motivate demoing a small makeImage component
 //  that takes an { imgURL } and returns an img element.
@@ -17,16 +17,15 @@ const imageData = [
 const { open, close } = constants;
 
 // TASK 2- Verify our imports using log statements
-console.log(panelData) // log the panelData
-console.log(open) // log the open arrow
-console.log(close) // log the close arrow
+console.log('Panel Data', panelData) // log the panelData
+console.log('Open', open) // log the open arrow
+console.log('Close', close) // log the close arrow
 
 
 // TASK 3- Comment out the div.panel from index.html and grab its parent element.
 //  We will generate the panel with code, and we'll need the parent
 //  so we can append the code-generated panel to the DOM.
 const accordion = document.querySelector('.accordion');
-console.log(accordion);
 
 // TASK 4- Create a function 'makePanel' that creates a panel exactly as you see it in the HTML.
 function makePanel(/* what data does the panel need? */) {
@@ -61,6 +60,7 @@ function makePanel(/* what data does the panel need? */) {
   panelBar.appendChild(panelButtons);
   panelButtons.appendChild(openButton);
   panelButtons.appendChild(closeButton);
+  accordion.appendChild(panel);
 
 
   // TASK 7- Add proper class names to our elements (See index.html for reference)
@@ -70,14 +70,14 @@ function makePanel(/* what data does the panel need? */) {
   panelContent.classList.add('panel-content');
   panelButtons.classList.add('panel-buttons');
   openButton.classList.add('panel-btn-open');
-  closeButton.classList.add('panel-btn-open');
+  closeButton.classList.add('panel-btn-close');
   closeButton.classList.add('hide-btn');
 
   // TASK 8- Set text content using arguments as raw material
   //  and also using the open and close arrows imported at the top of the file
   panelTitle.innerText = 'Title of Panel';
-  openButton.innerText = '&#9660';
-  closeButton.innerText = 'Close';
+  openButton.innerText = '▼';
+  closeButton.innerText = '▲';
 
   // TASK 9- When the 'open' or 'close' buttons are clicked, the content is toggled on/off:
   //  - the open button needs to go away (the 'hide-btn' class name controls this)
@@ -95,7 +95,7 @@ function makePanel(/* what data does the panel need? */) {
   })
 
   // don't forget to return the panel!
-  console.log(panel);
+  console.log('Panel', panel);
   return panel;
 }
 makePanel(panelData);
