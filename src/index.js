@@ -1,5 +1,6 @@
 import panelData from './data/panelData';
 import constants from './data/constants';
+import linkData from './data/linkData';
 
 // TASK 0- Motivate demoing a small makeImage component
 //  that takes an { imgURL } and returns an img element.
@@ -110,3 +111,24 @@ panelData.forEach((panel) => {
 // and returns an anchor tag with the right href, class and textContent.
 // Loop over the 'linkData' in the data folder, generate anchor tags
 // and append them to the nav.
+function linkMaker(href, className, text) {
+  // create link element
+  const link = document.createElement('a');
+
+  // set url
+  link.setAttribute('href', href);
+
+  // set class name
+  link.classList.add(className);
+
+  // set inner text
+  link.innerText = text;
+
+  // parent element
+  const nav = document.querySelector('.main-nav');
+  nav.appendChild(link);
+}
+
+linkData.forEach((link) => {
+  linkMaker(link.href, link.className, link.text);
+});
